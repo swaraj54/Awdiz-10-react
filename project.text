@@ -1,0 +1,12 @@
+HTML css JS - Project 
+
+Register -> Name Email password -> 
+check if email exist in ls if yes notify user to login or to use another email, 
+Localstorage -> [{name :"", email :"", password :""},{name :"", email :"", password :""}]
+
+
+Login -> Take Email Password from user,
+Localstorage access -> [{name :"", email :"", password :""},{name :"", email :"", password :""}]
+ -> Login success if user email and password matched in Localstorage array 
+ / if not then failed.
+
