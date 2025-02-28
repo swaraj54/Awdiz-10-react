@@ -3,7 +3,7 @@ import UseEffect from "./components/22-02/UseEffect";
 import UseState from "./components/22-02/UseState";
 import Home from "./components/Home";
 import Login from "./components/Login";
-import Register from "./components/Register";
+import Register from "./components/28-02/Register";
 import { Routes, Route } from "react-router-dom";
 import UseParams from "./components/22-02/UseParams";
 import ParamsProduct from "./components/22-02/ParamsProduct";
