@@ -7,6 +7,7 @@ function Login() {
       <h1>Login</h1>
       <button onClick={() => router("/register")}>Register</button>
       <button onClick={() => router("/")}>Home</button>
+      
     </div>
   );
 }

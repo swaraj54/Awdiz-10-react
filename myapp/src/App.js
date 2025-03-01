@@ -8,8 +8,10 @@ import { Routes, Route } from "react-router-dom";
 import UseParams from "./components/22-02/UseParams";
 import ParamsProduct from "./components/22-02/ParamsProduct";
 import Props from "./components/23-02/Props";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Todo from "./components/23-02/Todo";
+import UseMemo from "./components/01-03/UseMemo";
+import UseCallback from "./components/01-03/UseCallback";
 
 function App() {
   const [counter, setCounter] = useState(111);
@@ -30,9 +32,16 @@ function App() {
           element={<Props counter={counter} setCounter={setCounter} />}
         />
         <Route path="/todo" element={<Todo />} />
+        <Route path='/use-memo' element={<UseMemo />} />
+        <Route path='/use-callback' element={<UseCallback />} />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+// useRef 
+// useReducer 
+// useContext CONTEXT 
+// redux 

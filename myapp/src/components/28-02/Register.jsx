@@ -4,14 +4,8 @@ import { useNavigate } from "react-router-dom";
 function Register() {
   const router = useNavigate();
 
-  const [allUsers, setAllUsers] = useState([
-    {
-      name: "awdiz",
-      email: "awdiz@gmail.com",
-      password: "Pass@123",
-      confirmPassword: "Pass@123",
-    },
-  ]);
+  const [allUsers, setAllUsers] = useState([]);
+  console.log(allUsers, "allUsers  ");
 
   const [userData, setUserData] = useState({
     name: "",
@@ -29,6 +23,27 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (
+      userData.name &&
+      userData.email &&
+      userData.password &&
+      userData.confirmPassword
+    ) {
+      if (userData.password === userData.confirmPassword) {
+        setAllUsers([...allUsers, userData]);
+        setUserData({
+          name: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+      } else {
+        alert("Password not amtched.");
+      }
+    } else {
+      alert("All fields are required.");
+    }
+
     // write your code here
     // try {
     //   const response = await axios.post("https://backend.com/register", {
@@ -49,19 +64,39 @@ function Register() {
       <form onSubmit={handleSubmit}>
         <label>Name : </label>
         <br />
-        <input type="text" onChange={handleChange} name="name" />
+        <input
+          type="text"
+          value={userData.name}
+          onChange={handleChange}
+          name="name"
+        />
         <br />
         <label>Email : </label>
         <br />
-        <input type="email" onChange={handleChange} name="email" />
+        <input
+          type="email"
+          value={userData.email}
+          onChange={handleChange}
+          name="email"
+        />
         <br />
         <label>Password : </label>
         <br />
-        <input type="password" onChange={handleChange} name="password" />
+        <input
+          type="password"
+          value={userData.password}
+          onChange={handleChange}
+          name="password"
+        />
         <br />
         <label>Confirm Password : </label>
         <br />
-        <input type="password" onChange={handleChange} name="confirmPassword" />
+        <input
+          type="password"
+          value={userData.confirmPassword}
+          onChange={handleChange}
+          name="confirmPassword"
+        />
         <br />
         <input type="submit" />
         <br />
@@ -69,6 +104,13 @@ function Register() {
 
       <h1>All Users</h1>
       {/* {user.email } */}
+      {allUsers.map((user, i) => (
+        <div>
+          <h1>{i + 1}</h1>
+          <h1>Name : {user.name}</h1>
+          <h3>Email : {user.email}</h3>
+        </div>
+      ))}
     </div>
   );
 }
