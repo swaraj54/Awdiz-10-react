@@ -12,6 +12,8 @@ import { useContext, useState } from "react";
 import Todo from "./components/23-02/Todo";
 import UseMemo from "./components/01-03/UseMemo";
 import UseCallback from "./components/01-03/UseCallback";
+import UseRef from "./components/02-03/UseRef";
+import UseReducer from "./components/02-03/UseReducer";
 
 function App() {
   const [counter, setCounter] = useState(111);
@@ -34,6 +36,8 @@ function App() {
         <Route path="/todo" element={<Todo />} />
         <Route path='/use-memo' element={<UseMemo />} />
         <Route path='/use-callback' element={<UseCallback />} />
+        <Route path='/use-ref' element={<UseRef />} />
+        <Route path='/use-reducer' element={<UseReducer />} />
       </Routes>
     </div>
   );
