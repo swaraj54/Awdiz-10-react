@@ -14,9 +14,13 @@ import UseMemo from "./components/01-03/UseMemo";
 import UseCallback from "./components/01-03/UseCallback";
 import UseRef from "./components/02-03/UseRef";
 import UseReducer from "./components/02-03/UseReducer";
+import { MyCounterContext } from "./context/CounterContext";
+import ContextCounter from "./components/04-03/ContextCounter";
 
 function App() {
   const [counter, setCounter] = useState(111);
+  // const { state, dispatch } = useContext(MyCounterContext);
+  // console.log(state, "state in app from context");
 
   // console.log("Inside app");
   return (
@@ -34,10 +38,11 @@ function App() {
           element={<Props counter={counter} setCounter={setCounter} />}
         />
         <Route path="/todo" element={<Todo />} />
-        <Route path='/use-memo' element={<UseMemo />} />
-        <Route path='/use-callback' element={<UseCallback />} />
-        <Route path='/use-ref' element={<UseRef />} />
-        <Route path='/use-reducer' element={<UseReducer />} />
+        <Route path="/use-memo" element={<UseMemo />} />
+        <Route path="/use-callback" element={<UseCallback />} />
+        <Route path="/use-ref" element={<UseRef />} />
+        <Route path="/use-reducer" element={<UseReducer />} />
+        <Route path="/context-counter" element={<ContextCounter />} />
       </Routes>
     </div>
   );
@@ -45,7 +50,6 @@ function App() {
 
 export default App;
 
-// useRef 
-// useReducer 
-// useContext CONTEXT 
-// redux 
+// useContext CONTEXT
+
+// redux

@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MyCounterContext } from "../../context/CounterContext";
 
 function Register() {
+  const { state, dispatch } = useContext(MyCounterContext);
+  console.log(state, "state in resgiter");
   const router = useNavigate();
 
   const [allUsers, setAllUsers] = useState([]);
