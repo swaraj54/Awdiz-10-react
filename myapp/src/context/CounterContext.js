@@ -18,8 +18,8 @@ function Reducer(state, action) {
       return state;
   }
 }
-const InitialState = { counter: 1, theme: "light" };
-// HOF -> Accept another component as a prop
+const InitialState = { counter: 1, theme: "light" , user : {name :'Swaraj Jadhav', username :"swaraj54", imgurl : "https://awdwadaw.com"}};
+// HOC -> Accept another component as a prop
 function CounterContextProvider({ children }) {
   // children -> App
   const [state, dispatch] = useReducer(Reducer, InitialState);

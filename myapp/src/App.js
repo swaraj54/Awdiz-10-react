@@ -16,6 +16,7 @@ import UseRef from "./components/02-03/UseRef";
 import UseReducer from "./components/02-03/UseReducer";
 import { MyCounterContext } from "./context/CounterContext";
 import ContextCounter from "./components/04-03/ContextCounter";
+import ReduxCounter from "./components/06-03/ReduxCounter";
 
 function App() {
   const [counter, setCounter] = useState(111);
@@ -43,6 +44,7 @@ function App() {
         <Route path="/use-ref" element={<UseRef />} />
         <Route path="/use-reducer" element={<UseReducer />} />
         <Route path="/context-counter" element={<ContextCounter />} />
+        <Route path="/redux-counter" element={<ReduxCounter />} />
       </Routes>
     </div>
   );
