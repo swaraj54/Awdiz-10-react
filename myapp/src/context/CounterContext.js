@@ -3,7 +3,7 @@ import { createContext, useReducer } from "react";
 export const MyCounterContext = createContext(); // useContext(MyCounterContext)
 
 function Reducer(state, action) {
-  switch (action.type) {
+  switch (action.type) { // action.payload
     case "INCREMENT_COUNTER":
       return { ...state, counter: state.counter + 1 };
     case "DECREMENT_COUNTER":

@@ -5,6 +5,7 @@ function Home() {
   const redirection = (route) => {
     router(route);
   };
+
   return (
     <div>
       <h1>Home</h1>
@@ -21,6 +22,13 @@ function Home() {
         }}
       >
         Register
+      </button>
+      <button
+        onClick={() => {
+          redirection("/all-products");
+        }}
+      >
+        All Products
       </button>
     </div>
   );

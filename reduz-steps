@@ -1,12 +1,12 @@
-Step  1 : install redux and toolkit
+Step  1 : install react-redux and @redux-toolkit
 
-Step 2 : create store file 
-   - import your reducers and combine them    with  configureStore
+Step 2 : create folder called Redux and then create store file 
+   - import your reducers and combine them  with  configureStore
 
-Step 3 : create slice file for your feature, eg counter
+Step 3 : create slice file for your feature, eg counterSlice
 
 
-Step 4 : import store in index.js file and use it with Provider 
+Step 4 : import store in index.js file and use it with Provider component
 
 
 Step 5 : Now you can use useSelector and useDispatch to access state and call reducers in your component
