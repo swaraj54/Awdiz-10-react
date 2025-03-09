@@ -8,7 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import UseParams from "./components/22-02/UseParams";
 import ParamsProduct from "./components/22-02/ParamsProduct";
 import Props from "./components/23-02/Props";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Todo from "./components/23-02/Todo";
 import UseMemo from "./components/01-03/UseMemo";
 import UseCallback from "./components/01-03/UseCallback";
@@ -19,15 +19,32 @@ import ContextCounter from "./components/04-03/ContextCounter";
 import ReduxCounter from "./components/06-03/ReduxCounter";
 import FakeLogin from "./components/08-03/FakeLogin";
 import AllProducts from "./components/08-03/AllProducts";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "./redux/userSlice";
+import SingleProduct from "./components/09-03/SingleProduct";
+import Navbar from "./components/09-03/Navbar";
 
 function App() {
+  const dispatch = useDispatch();
+  const tokenFromRedux = useSelector((state) => state.user.token);
   const [counter, setCounter] = useState(111);
   // const { state, dispatch } = useContext(MyCounterContext);
   // console.log(state, "state in app from context");
 
   // console.log("Inside app");
+
+  useEffect(() => {
+    const tokenFromLocalStorage = JSON.parse(localStorage.getItem("token"));
+    if (tokenFromLocalStorage) {
+      if (tokenFromRedux == null) {
+        dispatch(login(tokenFromLocalStorage));
+      }
+    }
+  }, []);
+
   return (
     <div className="App">
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -48,6 +65,7 @@ function App() {
         <Route path="/context-counter" element={<ContextCounter />} />
         <Route path="/redux-counter" element={<ReduxCounter />} />
         <Route path="/all-products" element={<AllProducts />} />
+        <Route path="/single-product/:id" element={<SingleProduct />} />
         <Route path="/fake-login" element={<FakeLogin />} />
       </Routes>
     </div>

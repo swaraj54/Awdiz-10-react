@@ -6,10 +6,13 @@ const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       console.log(action, "action");
+      localStorage.setItem("token", JSON.stringify(action.payload));
       state.token = action.payload;
     },
     logout: (state) => {
+      localStorage.removeItem("token");
       state.token = null;
+      alert("Logout successfull.");
     },
   },
 });

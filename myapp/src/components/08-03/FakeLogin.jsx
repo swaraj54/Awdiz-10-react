@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/userSlice";
@@ -39,8 +39,17 @@ const FakeLogin = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      // alert(token);
+      router(-1);
+    }
+  }, [token]);
+
   return (
     <div>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <p>Note : Please try username and password twice.</p>
         <label>Username</label>
