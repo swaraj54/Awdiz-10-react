@@ -1,8 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 const SingleProduct = () => {
+  const token = useSelector((state) => state.user.token);
+  const router = useNavigate();
   const { id } = useParams();
   const [singleProducts, setSingleProducts] = useState({});
 
@@ -22,6 +25,11 @@ const SingleProduct = () => {
       getSingleProductData();
     }
   }, [id]);
+  useEffect(() => {
+    if (token == null) {
+      router("/fake-login");
+    }
+  }, [token]);
   return (
     <div style={{ display: "flex", justifyContent: "space-around" }}>
       <div style={{ border: "1px solid black", width: "47%", height: "450px" }}>
