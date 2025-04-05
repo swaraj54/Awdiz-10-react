@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyCounterContext } from "../../context/CounterContext";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function Register() {
   const { state, dispatch } = useContext(MyCounterContext);
@@ -26,36 +28,44 @@ function Register() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (
-      userData.name &&
-      userData.email &&
-      userData.password &&
-      userData.confirmPassword
-    ) {
-      if (userData.password === userData.confirmPassword) {
-        setAllUsers([...allUsers, userData]);
-        setUserData({
-          name: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-        });
+    try {
+      if (
+        userData.name &&
+        userData.email &&
+        userData.password &&
+        userData.confirmPassword
+      ) {
+        if (userData.password === userData.confirmPassword) {
+          const response = await axios.post(
+            "http://localhost:8000/api/v1/auth/register",
+            {
+              userData,
+            }
+          );
+          if (response.data.success === true) {
+            toast.success(response.data.message);
+            console.log(response.data, "response from register apu");
+            setAllUsers([...allUsers, userData]);
+            setUserData({
+              name: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+            });
+            router("/login");
+          } else {
+            toast.error(response.data.message);
+          }
+        } else {
+          toast.error("Password not amtched.");
+        }
       } else {
-        alert("Password not amtched.");
+        toast.error("All fields are required.");
       }
-    } else {
-      alert("All fields are required.");
+    } catch (error) {
+      console.log(error, "error while submitting register.");
+      toast.error(error.response.data.message);
     }
-
-    // write your code here
-    // try {
-    //   const response = await axios.post("https://backend.com/register", {
-    //     userData,
-    //   });
-    //   console.log(response, "response");
-    // } catch (error) {
-    //   console.log(error, "error while submitting register.");
-    // }
   };
 
   return (
