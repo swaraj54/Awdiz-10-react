@@ -7,6 +7,8 @@ const Navbar = () => {
   const router = useNavigate();
   const dispatch = useDispatch();
   const tokenInRedux = useSelector((state) => state.user.token);
+  const userData = useSelector((state) => state.user.user);
+  console.log(userData,"userData")
   return (
     <div
       style={{
@@ -22,13 +24,13 @@ const Navbar = () => {
       <h1 onClick={() => router("/all-products")} style={{ cursor: "pointer" }}>
         Products
       </h1>
-      {!tokenInRedux ? (
+      {!userData ? (
         <h1 onClick={() => router("/fake-login")} style={{ cursor: "pointer" }}>
           Login
         </h1>
       ) : (
         <h1 onClick={() => dispatch(logout())} style={{ cursor: "pointer" }}>
-          Logout
+          Hi {userData?.name}, Logout?
         </h1>
       )}
     </div>

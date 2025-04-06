@@ -33,14 +33,14 @@ function App() {
 
   // console.log("Inside app");
 
-  useEffect(() => {
-    const tokenFromLocalStorage = JSON.parse(localStorage.getItem("token"));
-    if (tokenFromLocalStorage) {
-      if (tokenFromRedux == null) {
-        dispatch(login(tokenFromLocalStorage));
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   const tokenFromLocalStorage = JSON.parse(localStorage.getItem("token"));
+  //   if (tokenFromLocalStorage) {
+  //     if (tokenFromRedux == null) {
+  //       dispatch(login(tokenFromLocalStorage));
+  //     }
+  //   }
+  // }, []);
 
   return (
     <div className="App">
