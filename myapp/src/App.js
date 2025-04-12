@@ -23,11 +23,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "./redux/userSlice";
 import SingleProduct from "./components/09-03/SingleProduct";
 import Navbar from "./components/09-03/Navbar";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 function App() {
   const dispatch = useDispatch();
   const tokenFromRedux = useSelector((state) => state.user.token);
   const [counter, setCounter] = useState(111);
+  const userData = useSelector((state) => state.user.user);
   // const { state, dispatch } = useContext(MyCounterContext);
   // console.log(state, "state in app from context");
 
@@ -41,6 +44,37 @@ function App() {
   //     }
   //   }
   // }, []);
+
+  async function getCurrentUserData(token) {
+    // make api call with token
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/v1/auth/get-current-user",
+        { token }
+      );
+
+      if (response.data.success) {
+        dispatch(login(response.data.userData));
+      } else {
+        localStorage.removeItem("token");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    if (!userData) {
+      const token = localStorage.getItem("token");
+      console.log(token, "token");
+      if (token) {
+        console.log("user logged in but lost data");
+        getCurrentUserData(JSON.parse(token));
+      } else {
+        console.log("user not logged in");
+      }
+    }
+  }, [userData]);
 
   return (
     <div className="App">

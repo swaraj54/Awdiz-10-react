@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 const userSlice = createSlice({
   name: "user",
@@ -6,12 +7,15 @@ const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       console.log(action, "action");
-      localStorage.setItem("token", JSON.stringify(action.payload.token));
+      if (action.payload.token) {
+        localStorage.setItem("token", JSON.stringify(action.payload.token));
+      }
       state.user = action.payload.user;
     },
     logout: (state) => {
-      // localStorage.removeItem("token");
+      localStorage.removeItem("token");
       state.user = null;
+      toast.success("Logout Successfull.")
     },
   },
 });

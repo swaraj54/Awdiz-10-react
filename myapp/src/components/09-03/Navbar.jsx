@@ -25,7 +25,7 @@ const Navbar = () => {
         Products
       </h1>
       {!userData ? (
-        <h1 onClick={() => router("/fake-login")} style={{ cursor: "pointer" }}>
+        <h1 onClick={() => router("/login")} style={{ cursor: "pointer" }}>
           Login
         </h1>
       ) : (

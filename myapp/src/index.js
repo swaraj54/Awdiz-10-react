@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
       <CounterContextProvider>
         <Provider store={store}>
@@ -44,7 +44,7 @@ root.render(
         </Provider>
       </CounterContextProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
