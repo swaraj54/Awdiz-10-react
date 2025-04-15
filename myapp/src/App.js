@@ -25,6 +25,7 @@ import SingleProduct from "./components/09-03/SingleProduct";
 import Navbar from "./components/09-03/Navbar";
 import toast from "react-hot-toast";
 import axios from "axios";
+import AddProduct from "./components/seller/AddProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -101,6 +102,8 @@ function App() {
         <Route path="/all-products" element={<AllProducts />} />
         <Route path="/single-product/:id" element={<SingleProduct />} />
         <Route path="/fake-login" element={<FakeLogin />} />
+        <Route path="/add-product" element={<AddProduct />} />
+        {/* <Route path="/view-products" element={<ViewProducts />} /> */}
       </Routes>
     </div>
   );

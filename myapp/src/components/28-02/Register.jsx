@@ -17,6 +17,7 @@ function Register() {
     email: "",
     password: "",
     confirmPassword: "",
+    role: "user",
   });
 
   console.log(userData, "userData");
@@ -24,6 +25,10 @@ function Register() {
   const handleChange = (event) => {
     // console.log(event.target.value, "value", event.target.name, "name");
     setUserData({ ...userData, [event.target.name]: event.target.value });
+  };
+  const handleChangeRole = (event) => {
+    console.log(event.target.value, "event.target.value ");
+    setUserData({ ...userData, ["role"]: event.target.value });
   };
 
   const handleSubmit = async (event) => {
@@ -33,7 +38,8 @@ function Register() {
         userData.name &&
         userData.email &&
         userData.password &&
-        userData.confirmPassword
+        userData.confirmPassword &&
+        userData.role
       ) {
         if (userData.password === userData.confirmPassword) {
           const response = await axios.post(
@@ -51,6 +57,7 @@ function Register() {
               email: "",
               password: "",
               confirmPassword: "",
+              role: "user",
             });
             router("/login");
           } else {
@@ -92,6 +99,14 @@ function Register() {
           onChange={handleChange}
           name="email"
         />
+        <br />
+        <label>Select Role : </label>
+        <br />
+        <select onChange={handleChangeRole}>
+          <option value="user">User</option>
+          <option value="seller">Seller</option>
+          <option value="admin">Admin</option>
+        </select>
         <br />
         <label>Password : </label>
         <br />

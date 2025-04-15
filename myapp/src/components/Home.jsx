@@ -30,6 +30,13 @@ function Home() {
       >
         All Products
       </button>
+      <button
+        onClick={() => {
+          redirection("/add-product");
+        }}
+      >
+        Add Product
+      </button>
     </div>
   );
 }
