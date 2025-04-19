@@ -26,6 +26,7 @@ import Navbar from "./components/09-03/Navbar";
 import toast from "react-hot-toast";
 import axios from "axios";
 import AddProduct from "./components/seller/AddProduct";
+import AddedProducts from "./components/AddedProducts";
 
 function App() {
   const dispatch = useDispatch();
@@ -103,6 +104,7 @@ function App() {
         <Route path="/single-product/:id" element={<SingleProduct />} />
         <Route path="/fake-login" element={<FakeLogin />} />
         <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/added-products" element={<AddedProducts />} />
         {/* <Route path="/view-products" element={<ViewProducts />} /> */}
       </Routes>
     </div>

@@ -26,7 +26,17 @@ const AddProduct = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!userData?.userId) {
+      return toast.error("Please login.");
+    }
     try {
+      console.log(
+        productData.name,
+        productData.price,
+        productData.quantity,
+        productData.category,
+        productData.image
+      );
       if (
         productData.name &&
         productData.price &&
@@ -50,7 +60,7 @@ const AddProduct = () => {
             category: "",
             image: "",
           });
-          //   router("/login");
+            router("/added-products");
         } else {
           toast.error(response.data.message);
         }
@@ -63,8 +73,8 @@ const AddProduct = () => {
     }
   };
   useEffect(() => {
-    if (userData && userData?.role != "seller") {
-      toast.error("You dont have access for this page.");
+    if (!userData || (userData && userData?.role != "seller")) {
+      toast.error("You dont have access for this page, please login.");
       router("/");
     }
   }, [userData]);

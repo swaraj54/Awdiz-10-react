@@ -8,7 +8,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const tokenInRedux = useSelector((state) => state.user.token);
   const userData = useSelector((state) => state.user.user);
-  console.log(userData,"userData")
+  console.log(userData, "userData");
   return (
     <div
       style={{
@@ -21,9 +21,27 @@ const Navbar = () => {
       <h1 onClick={() => router("/")} style={{ cursor: "pointer" }}>
         Home
       </h1>
-      <h1 onClick={() => router("/all-products")} style={{ cursor: "pointer" }}>
+      {/* <h1 onClick={() => router("/all-products")} style={{ cursor: "pointer" }}>
         Products
-      </h1>
+      </h1> */}
+      {userData?.role == "seller" && (
+        <>
+          <h1
+            onClick={() => {
+              router("/add-product");
+            }}
+          >
+            Add Product
+          </h1>
+          <h1
+            onClick={() => {
+              router("/added-products");
+            }}
+          >
+            Your Added Products
+          </h1>
+        </>
+      )}
       {!userData ? (
         <h1 onClick={() => router("/login")} style={{ cursor: "pointer" }}>
           Login

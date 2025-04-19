@@ -9,34 +9,6 @@ function Home() {
   return (
     <div>
       <h1>Home</h1>
-      <button
-        onClick={() => {
-          redirection("/login");
-        }}
-      >
-        Login
-      </button>
-      <button
-        onClick={() => {
-          redirection("/register");
-        }}
-      >
-        Register
-      </button>
-      <button
-        onClick={() => {
-          redirection("/all-products");
-        }}
-      >
-        All Products
-      </button>
-      <button
-        onClick={() => {
-          redirection("/add-product");
-        }}
-      >
-        Add Product
-      </button>
     </div>
   );
 }
