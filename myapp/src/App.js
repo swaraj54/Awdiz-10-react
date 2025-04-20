@@ -27,6 +27,8 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import AddProduct from "./components/seller/AddProduct";
 import AddedProducts from "./components/AddedProducts";
+import AllProductsFromDb from "./components/AllProductsFromDb";
+import SingleProductFromDb from "./components/SingleProductFromDb";
 
 function App() {
   const dispatch = useDispatch();
@@ -100,11 +102,13 @@ function App() {
         <Route path="/use-reducer" element={<UseReducer />} />
         <Route path="/context-counter" element={<ContextCounter />} />
         <Route path="/redux-counter" element={<ReduxCounter />} />
-        <Route path="/all-products" element={<AllProducts />} />
-        <Route path="/single-product/:id" element={<SingleProduct />} />
+        <Route path="/all-products-fakestore" element={<AllProducts />} />
+        <Route path="/single-product-fakestore/:id" element={<SingleProduct />} />
         <Route path="/fake-login" element={<FakeLogin />} />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/added-products" element={<AddedProducts />} />
+        <Route path="/all-products" element={<AllProductsFromDb />} />
+        <Route path="/single-product/:id" element={<SingleProductFromDb />} />
         {/* <Route path="/view-products" element={<ViewProducts />} /> */}
       </Routes>
     </div>

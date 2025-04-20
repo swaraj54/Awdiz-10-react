@@ -42,13 +42,24 @@ const Navbar = () => {
           </h1>
         </>
       )}
+      {userData?.role == "user" && (
+        <>
+          <h1
+            onClick={() => {
+              router("/all-products");
+            }}
+          >
+            All Products
+          </h1>
+        </>
+      )}
       {!userData ? (
         <h1 onClick={() => router("/login")} style={{ cursor: "pointer" }}>
           Login
         </h1>
       ) : (
         <h1 onClick={() => dispatch(logout())} style={{ cursor: "pointer" }}>
-          Hi {userData?.name}, Logout?
+          Hi {userData?.name} : {userData?.role}, Logout?
         </h1>
       )}
     </div>
