@@ -29,6 +29,7 @@ import AddProduct from "./components/seller/AddProduct";
 import AddedProducts from "./components/AddedProducts";
 import AllProductsFromDb from "./components/AllProductsFromDb";
 import SingleProductFromDb from "./components/SingleProductFromDb";
+import Cart from "./components/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -109,6 +110,7 @@ function App() {
         <Route path="/added-products" element={<AddedProducts />} />
         <Route path="/all-products" element={<AllProductsFromDb />} />
         <Route path="/single-product/:id" element={<SingleProductFromDb />} />
+        <Route path="/cart" element={<Cart />} />
         {/* <Route path="/view-products" element={<ViewProducts />} /> */}
       </Routes>
     </div>
