@@ -8,6 +8,7 @@ const Cart = () => {
   const router = useNavigate();
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
+  const [totolPrice, setTotalPrice] = useState(0);
   console.log(products, "products");
   const userData = useSelector((state) => state.user.user);
 
@@ -26,6 +27,7 @@ const Cart = () => {
       }
       if (response.data.success) {
         setProducts(response.data.products);
+        setTotalPrice(response.data.totalPrice);
       }
     } catch (error) {
       console.log(error);
@@ -49,34 +51,63 @@ const Cart = () => {
           style={{
             display: "flex",
             justifyContent: "space-around",
-            flexWrap: "wrap",
+            marginTop: "10px",
           }}
         >
-          {products.length > 0 &&
-            products.map((product) => (
-              <div
-                style={{
-                  width: "12%",
-                  height: "300px",
-                  border: "1px solid black",
-                  borderRadius: "10px",
-                  cursor: "pointer",
-                }}
-                onClick={() => router(`/single-product/${product._id}`)}
-              >
-                <img
+          <div
+            style={{
+              width: "68%",
+              border: "1px solid black",
+              borderRadius: "10px",
+              display: "flex",
+              justifyContent: "space-around",
+              flexWrap: "wrap",
+            }}
+          >
+            {products.length > 0 &&
+              products.map((product) => (
+                <div
                   style={{
-                    width: "100%",
-                    height: "220px",
+                    width: "20%",
+                    height: "300px",
+                    border: "1px solid black",
                     borderRadius: "10px",
+                    cursor: "pointer",
                   }}
-                  src={product.image}
-                />
-                <p style={{ fontSize: "10px" }}>{product.name}</p>
-                <p style={{ fontSize: "10px" }}>{product.price}</p>
-                <p style={{ fontSize: "10px" }}>{product.category}</p>
-              </div>
-            ))}
+                  onClick={() => router(`/single-product/${product._id}`)}
+                >
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "220px",
+                      borderRadius: "10px",
+                    }}
+                    src={product.image}
+                  />
+                  <p style={{ fontSize: "10px" }}>
+                    Product Name : {product.name}
+                  </p>
+                  <p style={{ fontSize: "10px" }}>
+                    Product Price : {product.price}/-
+                  </p>
+                  <p style={{ fontSize: "10px" }}>
+                    Product Category : {product.category}
+                  </p>
+                </div>
+              ))}
+          </div>
+          <div
+            style={{
+              width: "28%",
+              border: "1px solid black",
+              borderRadius: "10px",
+            }}
+          >
+            <h2>Cart Details:</h2>
+            <h3>Total Products Count : {products?.length}</h3>
+            <h3>Total Products Price : {totolPrice}/-</h3>
+            <button>Proceed to Payment</button>
+          </div>
         </div>
       )}
     </div>

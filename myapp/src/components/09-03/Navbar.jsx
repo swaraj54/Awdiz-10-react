@@ -51,6 +51,13 @@ const Navbar = () => {
           >
             All Products
           </h1>
+          <h1
+            onClick={() => {
+              router("/cart");
+            }}
+          >
+            Cart
+          </h1>
         </>
       )}
       {!userData ? (

@@ -104,7 +104,10 @@ function App() {
         <Route path="/context-counter" element={<ContextCounter />} />
         <Route path="/redux-counter" element={<ReduxCounter />} />
         <Route path="/all-products-fakestore" element={<AllProducts />} />
-        <Route path="/single-product-fakestore/:id" element={<SingleProduct />} />
+        <Route
+          path="/single-product-fakestore/:id"
+          element={<SingleProduct />}
+        />
         <Route path="/fake-login" element={<FakeLogin />} />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/added-products" element={<AddedProducts />} />
