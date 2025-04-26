@@ -53,6 +53,13 @@ const Navbar = () => {
           </h1>
           <h1
             onClick={() => {
+              router("/order-history");
+            }}
+          >
+            Order history
+          </h1>
+          <h1
+            onClick={() => {
               router("/cart");
             }}
           >

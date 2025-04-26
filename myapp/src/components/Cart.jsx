@@ -35,6 +35,25 @@ const Cart = () => {
       setLoading(false);
     }
   };
+
+  const checkOut = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        "http://localhost:8000/api/v1/user/checkout",
+        { userId: userData.userId, products }
+      );
+      if (response.data.success) {
+        toast.success(response.data.message);
+        router("/order-history");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (userData?.userId) {
       getCartProducts();
@@ -106,7 +125,7 @@ const Cart = () => {
             <h2>Cart Details:</h2>
             <h3>Total Products Count : {products?.length}</h3>
             <h3>Total Products Price : {totolPrice}/-</h3>
-            <button>Proceed to Payment</button>
+            <button onClick={checkOut}>Proceed to Payment</button>
           </div>
         </div>
       )}
