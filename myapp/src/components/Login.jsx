@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { login } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
+import axiosInstance from "../axiosConfig";
 
 function Login() {
   const dispatch = useDispatch();
@@ -15,10 +16,10 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/auth/login",
-        { email: userData.email, password: userData.password }
-      );
+      const response = await axiosInstance.post("/auth/login", {
+        email: userData.email,
+        password: userData.password,
+      });
       if (response.data.success) {
         dispatch(login(response.data.userData));
         toast.success(response.data.message);

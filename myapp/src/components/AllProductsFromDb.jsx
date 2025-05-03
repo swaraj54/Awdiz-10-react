@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosConfig";
 
 const AllProductsFromDb = () => {
   const router = useNavigate();
@@ -10,9 +11,7 @@ const AllProductsFromDb = () => {
   const getAllProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        "http://localhost:8000/api/v1/product/all-products"
-      );
+      const response = await axiosInstance.get("/product/all-products");
       if (response.data.success) {
         setProducts(response.data.products);
       }

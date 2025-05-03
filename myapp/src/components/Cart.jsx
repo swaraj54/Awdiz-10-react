@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosConfig";
 
 const Cart = () => {
   const router = useNavigate();
@@ -18,10 +19,9 @@ const Cart = () => {
         return toast.error("Please login to view cart products.");
       }
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/user/get-cart-products",
-        { userId: userData.userId }
-      );
+      const response = await axiosInstance.post("/user/get-cart-products", {
+        userId: userData.userId,
+      });
       if (response.data.noProductFound) {
         return toast.success("No Products found in cart.");
       }
@@ -39,10 +39,10 @@ const Cart = () => {
   const checkOut = async () => {
     try {
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/user/checkout",
-        { userId: userData.userId, products }
-      );
+      const response = await axiosInstance.post("/user/checkout", {
+        userId: userData.userId,
+        products,
+      });
       if (response.data.success) {
         toast.success(response.data.message);
         router("/order-history");

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../axiosConfig";
 
 const AddProduct = () => {
   const [productData, setProductData] = useState({
@@ -44,13 +45,10 @@ const AddProduct = () => {
         productData.category &&
         productData.image
       ) {
-        const response = await axios.post(
-          "http://localhost:8000/api/v1/product/add-product",
-          {
-            productData,
-            userId: userData.userId,
-          }
-        );
+        const response = await axiosInstance.post("/product/add-product", {
+          productData,
+          userId: userData.userId,
+        });
         if (response.data.success === true) {
           toast.success(response.data.message);
           setProductData({
@@ -60,7 +58,7 @@ const AddProduct = () => {
             category: "",
             image: "",
           });
-            router("/added-products");
+          router("/added-products");
         } else {
           toast.error(response.data.message);
         }

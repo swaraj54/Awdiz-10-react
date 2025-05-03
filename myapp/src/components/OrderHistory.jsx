@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosConfig";
 
 const OrderHistory = () => {
   const router = useNavigate();
@@ -12,10 +13,9 @@ const OrderHistory = () => {
   const getOrderHistory = async () => {
     try {
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/user/get-order-history",
-        { userId: userData.userId }
-      );
+      const response = await axiosInstance.post("/user/get-order-history", {
+        userId: userData.userId,
+      });
       if (response.data.success) {
         setOrders(response.data.orders);
       }

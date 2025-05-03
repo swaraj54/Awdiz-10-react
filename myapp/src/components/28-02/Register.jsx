@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { MyCounterContext } from "../../context/CounterContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import axiosInstance from "../../axiosConfig";
 
 function Register() {
   const { state, dispatch } = useContext(MyCounterContext);
@@ -42,12 +43,9 @@ function Register() {
         userData.role
       ) {
         if (userData.password === userData.confirmPassword) {
-          const response = await axios.post(
-            "http://localhost:8000/api/v1/auth/register",
-            {
-              userData,
-            }
-          );
+          const response = await axiosInstance.post("/auth/register", {
+            userData,
+          });
           if (response.data.success === true) {
             toast.success(response.data.message);
             console.log(response.data, "response from register apu");

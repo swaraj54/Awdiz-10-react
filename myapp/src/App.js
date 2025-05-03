@@ -31,6 +31,7 @@ import AllProductsFromDb from "./components/AllProductsFromDb";
 import SingleProductFromDb from "./components/SingleProductFromDb";
 import Cart from "./components/Cart";
 import OrderHistory from "./components/OrderHistory";
+import axiosInstance from "./axiosConfig";
 
 function App() {
   const dispatch = useDispatch();
@@ -54,11 +55,14 @@ function App() {
   async function getCurrentUserData(token) {
     // make api call with token
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/auth/get-current-user",
-        { token }
-      );
-
+      // const response = await axios.post(
+      //   "http://localhost:8000/api/v1/auth/get-current-user",
+      //   { token },
+      //   { withCredentials: true }
+      // );
+      const response = await axiosInstance.post("/auth/get-current-user", {
+        token,
+      });
       if (response.data.success) {
         dispatch(login(response.data.userData));
       } else {

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import axiosInstance from "../axiosConfig";
 
 const SingleProductFromDb = () => {
   const router = useNavigate();
@@ -15,10 +16,9 @@ const SingleProductFromDb = () => {
   const getSingleProductData = async () => {
     try {
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/product/single-product-data",
-        { productId: id }
-      );
+      const response = await axiosInstance.post("product/single-product-data", {
+        productId: id,
+      });
       if (response.data.success) {
         setProductData(response.data.productData);
       }
@@ -34,10 +34,10 @@ const SingleProductFromDb = () => {
         return toast.error("Please login to add product to cart.");
       }
       setCartButtonLoading(true);
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/user/add-to-cart",
-        { productId: id, userId: userData.userId }
-      );
+      const response = await axiosInstance.post("/user/add-to-cart", {
+        productId: id,
+        userId: userData.userId,
+      });
       if (response.data.success) {
         toast.success(response.data.message);
         router("/cart");

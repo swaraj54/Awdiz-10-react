@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../axiosConfig";
 
 const AddedProducts = () => {
   const [products, setProducts] = useState([]);
@@ -12,10 +13,13 @@ const AddedProducts = () => {
   const getAddedProducts = async () => {
     if (userData?.userId && userData?.role == "seller") {
       try {
-        const response = await axios.post(
-          "http://localhost:8000/api/v1/product/added-products",
-          { userId: userData.userId }
-        );
+        // const response = await axios.post(
+        //   "http://localhost:8000/api/v1/product/added-products",
+        //   { userId: userData.userId }
+        // );
+        const response = await axiosInstance.post("/product/added-products", {
+          userId: userData.userId,
+        });
         if (response.data.success) {
           setProducts(response.data.products);
         }
