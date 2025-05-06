@@ -32,6 +32,9 @@ import SingleProductFromDb from "./components/SingleProductFromDb";
 import Cart from "./components/Cart";
 import OrderHistory from "./components/OrderHistory";
 import axiosInstance from "./axiosConfig";
+import { io } from "socket.io-client";
+const socket = io("http://localhost:8000");
+// const socket = io("https://awdiz-10-backend.onrender.com");
 
 function App() {
   const dispatch = useDispatch();
@@ -86,8 +89,19 @@ function App() {
     }
   }, [userData]);
 
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      console.log(data, " data from receive_message");
+    });
+  }, []);
+
+  const sendMessage = () => {
+    socket.emit("send_message", { message: "Hello from frontend" });
+  };
+
   return (
     <div className="App">
+      <button onClick={sendMessage}>Socket testing button</button>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
