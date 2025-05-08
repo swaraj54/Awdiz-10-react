@@ -95,6 +95,24 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    console.log(
+      userData,
+      userData?.userId,
+      userData?.role == "seller",
+      "check here"
+    );
+    if (userData && userData?.userId && userData?.role == "seller") {
+      socket.emit("registerSeller", { userId: userData?.userId });
+    }
+    socket.on("productBuy", ({ buyerName, productData }) => {
+      toast.success(
+        `Your product ${productData?.name} was brought by ${buyerName}.`
+      );
+    });
+    // return () => socket.disconnect();
+  }, [userData]);
+
   const sendMessage = () => {
     socket.emit("send_message", { message: "Hello from frontend" });
   };
